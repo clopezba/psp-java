@@ -11,9 +11,8 @@ public class Programa {
 		//A través de la interfaz necesitamos crear un thread
 		Thread t2 = new Thread(new TareaRunnable());
 		t2.start();
-		
-		t2.join();
 		t1.join();
+		t2.join();
 		System.out.println("Este es el final del hilo principal");
 		
 	}
