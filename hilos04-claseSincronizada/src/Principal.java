@@ -5,7 +5,7 @@ public class Principal {
 		ListaCompra lista =  new ListaCompra();
 		new Thread(new HiloMonitor(lista)).start();
 		synchronized (lista) {
-			lista.notify();
+			lista.notify(); //Mando una notificación
 		}
 		
 		new Thread(new HiloInsertador(lista, "Tomates")).start();
