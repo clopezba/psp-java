@@ -10,14 +10,21 @@ public class HiloEsperador implements Runnable {
 
 	@Override
 	public void run() {
+		
 		synchronized (compartido) {
 			try {
+				Thread.sleep(5000);
+			} catch (InterruptedException e1) {
+				e1.printStackTrace();
+			}
+			try {
+				System.out.println("Esperando sobre " + compartido);
 				compartido.wait();
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
 		}
-		System.out.println("He sido notificado");
+		System.out.println("["+Thread.currentThread().getName()+ "]" +"He sido notificado");
 
 	}
 
