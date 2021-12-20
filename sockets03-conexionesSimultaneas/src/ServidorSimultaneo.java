@@ -11,6 +11,7 @@ public class ServidorSimultaneo {
 		ColaMensajes colaMensajes = new ColaMensajes();
 		ServerSocket serverSock = new ServerSocket(5454);
 		Thread hiloPropagador = new Thread(new HiloPropagador(clientes, colaMensajes));
+		hiloPropagador.start();
 		
 		while (true) {
 			Socket sock = serverSock.accept();
