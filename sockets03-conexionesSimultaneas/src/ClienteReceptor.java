@@ -2,9 +2,8 @@ import java.io.DataInputStream;
 import java.io.IOException;
 
 public class ClienteReceptor implements Runnable {
-
 	DataInputStream entrada;
-	
+
 	public ClienteReceptor(DataInputStream entrada) {
 		super();
 		this.entrada = entrada;
@@ -25,8 +24,5 @@ public class ClienteReceptor implements Runnable {
 				e.printStackTrace();
 			}
 		}
-		
-
 	}
-
 }

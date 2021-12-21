@@ -4,7 +4,6 @@ import java.net.Socket;
 import java.util.ArrayList;
 
 public class HiloPropagador implements Runnable {
-
 	ArrayList<Socket> clientes;
 	ColaMensajes colaMensajes;
 
@@ -30,18 +29,11 @@ public class HiloPropagador implements Runnable {
 			for (Socket socket : clientes) {
 				try {
 					salida = new DataOutputStream(socket.getOutputStream());
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
-				try {
 					salida.writeUTF(m.toString());
 				} catch (IOException e) {
 					e.printStackTrace();
 				}
 			}
-
 		}
-
 	}
-
 }

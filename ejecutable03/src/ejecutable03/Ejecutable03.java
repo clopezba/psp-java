@@ -13,8 +13,8 @@ public class Ejecutable03 {
 		
 		//Esta línea detiene la ejecución sin afectar al procesador durante los milisegundos 
 		//del parámetro
-		Thread.sleep(3000);
-		
+		//Thread.sleep(2000);
+				
 		if (firefox.isAlive()) 
 			System.out.println("El proceso firefox está vivo y con el pid: " 
 					+ firefox.pid());

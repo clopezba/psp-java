@@ -19,7 +19,9 @@ public class Ejecutor {
 		
 		h1.start();*/
 		
-		//Varios ficheros paralelizados
+		//--------Varios ficheros paralelizados-------
+		
+		//Creamos un Array con los ficheros que utilizaremos
 		long tInicio= System.nanoTime();
 		ArrayList<String> ficheros = new ArrayList<String>();
 		ficheros.add("/home/alumno/repos/psp-c/prog12-EjercicioCompleto-Prod-Separado/main.c");
@@ -28,6 +30,7 @@ public class Ejecutor {
 		ficheros.add("/home/alumno/repos/psp-c/prog12-EjercicioCompleto-Prod-Separado/funciones.h");
 		ficheros.add("/home/alumno/repos/psp-c/prog12-EjercicioCompleto-Prod-Separado/productor.c");
 		
+		//
 		ArrayList<HiloEjecutor> listaHilos = new ArrayList<HiloEjecutor>();
 		for (String rutaFichero : ficheros) {
 			listaHilos.add(new HiloEjecutor(rutaFichero));

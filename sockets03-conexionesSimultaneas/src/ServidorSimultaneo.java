@@ -15,12 +15,11 @@ public class ServidorSimultaneo {
 		
 		while (true) {
 			Socket sock = serverSock.accept();
-			HiloConexion hilo = new HiloConexion(sock);
+			HiloConexion hilo = new HiloConexion(sock, colaMensajes);
 			clientes.add(sock);
 			System.out.println("Cliente conectado!!: " + hilo.getId());
 			hilo.start();
 		}
-
 	}
-
 }
+
