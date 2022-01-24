@@ -14,22 +14,21 @@ public class Emisor {
 
 		InetAddress mcIPAddress = InetAddress.getByName(mcIPStr);
 		Scanner s = new Scanner(System.in);
-		String mensaje;
-		
-		while (true) {
+		String mensaje = "";
+
+		while (!mensaje.equals("/quit")) {
 			mensaje = s.nextLine();
 			byte[] msg = mensaje.getBytes();
+
+			// El paquete es el que tiene toda la información de la red y puerto al que se
+			// envía
 			DatagramPacket packet = new DatagramPacket(msg, msg.length);
 			packet.setAddress(mcIPAddress);
 			packet.setPort(mcPort);
 			udpSocket.send(packet);
 			System.out.println("Mensaje enviado a " + mcIPStr + ".");
-			if (mensaje.equals("/quit")) {
-				System.out.println("Saliendo...");
-				udpSocket.close();
-				break;
-			}
-			
 		}
+		System.out.println("Saliendo...");
+		udpSocket.close();
 	}
 }

@@ -13,6 +13,7 @@ public class Receptor {
     InetAddress mcIPAddress = null;
     
     mcIPAddress = InetAddress.getByName(mcIPStr);
+    //Como es socket de recepción, hay que darle un puerto
     mcSocket = new MulticastSocket(mcPort);
     System.out.println("Multicast Receiver running at:" + mcSocket.getLocalSocketAddress());
     mcSocket.joinGroup(mcIPAddress);
@@ -21,16 +22,15 @@ public class Receptor {
 
     System.out.println("Esperando mensaje multicast en " + mcIPStr+ " ...");
     
-    
-	mcSocket.receive(packet);
-	String msg = new String(packet.getData(), packet.getOffset(), packet.getLength());
+    //Se bloquea hasta que reciba un paquete
+	
+    String msg = "";
 	while(!msg.equals("/quit")) {
-		System.out.println("[Multicast  Receiver] Recibido:" + msg);
 		mcSocket.receive(packet);
 		msg = new String(packet.getData(), packet.getOffset(), packet.getLength());
+		System.out.println("[Multicast  Receiver] Recibido:" + msg);
 	}
-	System.out.println("[Multicast  Receiver] Recibido:" + msg);
-    System.out.println("Multicast desconectado por emisor");    
+	System.out.println("Multicast desconectado por emisor");    
 
     mcSocket.leaveGroup(mcIPAddress); //dejando de escuchar
     mcSocket.close();
