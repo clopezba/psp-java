@@ -11,10 +11,10 @@ import javax.net.ssl.HttpsURLConnection;
 public class DescargaWeb {
 	
 	public static void main(String[] args) throws IOException {
-		String stringURL = "https://wikipedia.orga/";
+		String stringURL = "https://wikipedia.org/";
 		URL objetoURL = new URL(stringURL); //Creo URL
 		
-		//URLConnection conexionURL = objetoURL.openConnection(); //Creo conexión
+//		URLConnection conexionURL = objetoURL.openConnection(); //Creo conexión
 		
 		HttpsURLConnection conexionHttps = (HttpsURLConnection) objetoURL.openConnection();  
 		
