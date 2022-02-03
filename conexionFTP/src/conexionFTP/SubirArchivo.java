@@ -12,7 +12,7 @@ import org.apache.commons.net.ftp.FTPClient;
 public class SubirArchivo {
 
 	public static void main(String[] args) {
-		String servidor = "192.168.102.200";
+		String servidor = "localhost";
 		int puerto = 21; // Puerto por defecto para ftp
 		String usuario = "uftp";
 		String password = "alumno";
