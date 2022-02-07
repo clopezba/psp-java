@@ -1,5 +1,6 @@
 package ftpDescargaSubida;
 
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -7,8 +8,8 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.io.PrintWriter;
-import java.util.Date;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 
 import org.apache.commons.net.ftp.FTP;
 import org.apache.commons.net.ftp.FTPClient;
@@ -16,7 +17,6 @@ import org.apache.commons.net.ftp.FTPFile;
 
 public class DescargaSubida {
 
-	@SuppressWarnings("deprecation")
 	public static void main(String[] args) {
 		String servidor = "localhost";
 		int puerto = 21;
@@ -24,7 +24,6 @@ public class DescargaSubida {
 		String contrasenya = "alumno";
 		int contadorFicheros = 0;
 
-		// Crear cliente FTP
 		FTPClient cliente = new FTPClient();
 
 		// Conectar
@@ -49,13 +48,12 @@ public class DescargaSubida {
 
 				// Cambia al directorio de la carpeta
 				cliente.cwd(carpeta.getName());
-				// Guarda todos los ficheros de la carpeta
 				FTPFile[] archivos = cliente.listFiles();
 				for (FTPFile archivo : archivos) {
 					System.out.println(archivo);
+					
 					// Flujo de salida para guardar los ficheros que descargue
 					OutputStream os = new FileOutputStream(new File(archivo.getName()));
-					// Descarga el fichero
 					boolean descargado = cliente.retrieveFile(archivo.getName(), os);
 					os.close();
 
@@ -69,17 +67,19 @@ public class DescargaSubida {
 			System.out.println("Se han descargado " + contadorFicheros + " ficheros.");
 
 			// Creación de fichero Log
-			Date date = new Date();
-			String fecha = date.getDay() + "/" + (date.getMonth() + 1) + "/" + (date.getYear() + 1900);
-			FileWriter fichero = new FileWriter("log.txt");
-			PrintWriter pt = new PrintWriter(fichero);
-			pt.println("Descarga realizada el " + fecha + " a las " + date.getHours() + ":" + date.getMinutes());
-			fichero.close();
+			String fechaHora = new SimpleDateFormat("dd/MM/yyyy 'a las' HH:mm")
+					.format(Calendar.getInstance().getTime());
 
+			FileWriter fichero = new FileWriter("ficheroLog.txt");
+			BufferedWriter bw = new BufferedWriter(fichero);
+			bw.write("Descarga realizada el " + fechaHora);
+			bw.close();
+			fichero.close();
+			
 			// Crear archivo de subida y enviar
-			InputStream is = new FileInputStream("log.txt");
+			InputStream is = new FileInputStream("ficheroLog.txt");
 			boolean terminado = cliente.storeFile("log.txt", is);
-			is.close(); // StoreFile no cierra el Stream, lo hacemos manual
+			is.close();
 
 			if (terminado) {
 				System.out.println("Archivo enviado");
