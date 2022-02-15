@@ -16,6 +16,16 @@ public class DatosEstacion {
 	public float tamin;
 	public float ta;
 	public float tamax;
+	public Date getFint() {
+		return fint;
+	}
+	@Override
+	public String toString() {
+		return "DatosEstacion [idema=" + idema + ", lon=" + lon + ", fint=" + fint + ", prec=" + prec + ", alt=" + alt
+				+ ", vmax=" + vmax + ", vv=" + vv + ", dv=" + dv + ", lat=" + lat + ", dmax=" + dmax + ", ubi=" + ubi
+				+ ", hr=" + hr + ", tamin=" + tamin + ", ta=" + ta + ", tamax=" + tamax + "]";
+	}
+	
 	
 	
 	

@@ -10,6 +10,7 @@ import java.time.Duration;
 import org.apache.hc.core5.net.URIBuilder;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 public class ClienteSimple {
 
@@ -63,8 +64,14 @@ public class ClienteSimple {
 		HttpResponse<String> respDatos = cliente.send(petic, BodyHandlers.ofString());
 		System.out.println(respDatos.body());
 		
-		DatosEstacion[] datosAlmudevar = gson.fromJson(respDatos.body(), DatosEstacion[].class);
-		System.out.println(datosAlmudevar[0]);
+		Gson gson2 = new GsonBuilder()
+				.setDateFormat("yyyy-MM-dd'T'hh:mm:ss")
+				.create();
+		
+		DatosEstacion[] datosAlmudevar = gson2.fromJson(respDatos.body(), DatosEstacion[].class);
+		for (DatosEstacion datosEstacion : datosAlmudevar) {
+			System.out.println(datosEstacion);
+		}
 	}
 
 }
