@@ -37,6 +37,7 @@ public class CifradoSimetrico {
 		Cipher codificadorAES = Cipher.getInstance("AES/CBC/PKCS5Padding");
 		String initVectorString = "encryptionIntVec";
 		IvParameterSpec iv = new IvParameterSpec(initVectorString.getBytes());
+		//Se debe añadir 'iv' si es con CBC
 		codificadorAES.init(Cipher.ENCRYPT_MODE, key, iv);
 		
 		
@@ -58,8 +59,12 @@ public class CifradoSimetrico {
 		
 		
 		//+++[[ Descifrar ]]++++
-		Cipher decodificadorAES = Cipher.getInstance("AES/CBC/PKCS5Padding");
+		//Con ECB:
+		//Cipher decodificadorAES = Cipher.getInstance("AES/ECB/PKCS5Padding");
 		
+		//Si lo hacemos con CBC:
+		Cipher decodificadorAES = Cipher.getInstance("AES/CBC/PKCS5Padding");
+		//Se debe añadir 'iv' si es con CBC
 		decodificadorAES.init(Cipher.DECRYPT_MODE, key, iv);
 		
 		byte[] textiDesencriptado = decodificadorAES.doFinal(textoEncriptado);
