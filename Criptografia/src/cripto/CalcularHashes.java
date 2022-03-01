@@ -1,4 +1,4 @@
-package resumenesHash;
+package cripto;
 	import java.security.MessageDigest;
 import java.util.Base64;
 
