@@ -16,10 +16,9 @@ import javax.crypto.spec.SecretKeySpec;
 public class CifradoSimetrico {
 	public static void main(String[] args) throws NoSuchAlgorithmException, NoSuchPaddingException, InvalidKeyException, IllegalBlockSizeException, BadPaddingException, InvalidAlgorithmParameterException 
  {
-		KeyGenerator kg = KeyGenerator.getInstance("AES");
-		kg.init(128); //parámetros de la clave - 128bits
-		
 		//Clave autogenerada
+		//KeyGenerator kg = KeyGenerator.getInstance("AES");
+		//kg.init(128); //parámetros de la clave - 128bits
 		//Key key = kg.generateKey(); //generamos la clave. Servirá para pasarlo junto con el mensaje para decodificarlo
 		
 		//Generar una clave basada en un texto. Tiene que tener más de 16 bytes.
